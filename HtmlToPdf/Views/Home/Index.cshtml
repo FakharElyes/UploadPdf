@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center" id="canvas_div_pdf">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+
+<a id="printPDF" class="btn btn-primary">Print</a>
+
+
+
+@section scripts {
+    <script>
+        
+
+        $("#printPDF").click(function () {
+            var element = document.getElementById('canvas_div_pdf');
+
+            html2pdf(element, {
+                margin: 10,
+                filename: 'myfile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            });
+        });
+
+        
+
+    </script>
+}
